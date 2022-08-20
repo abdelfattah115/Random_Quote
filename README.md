@@ -12,4 +12,4 @@
  - flutter_spinkit.
 
 ### video Screen
-https://user-images.githubusercontent.com/74645031/185725069-1632ce80-f469-4356-85cc-446be5b0ef91.mp4
+https://user-images.githubusercontent.com/74645031/185725837-08e397d4-d3f3-4513-a651-46a5c06e5d0b.mp4
