@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'bloc_observer.dart';
 import 'config/locale/app_localizations_setup.dart';
 import 'features/splash/presentation/cubit/lcoale_cubit.dart';
 import 'core/services/service_locator.dart';
@@ -12,11 +13,16 @@ import 'features/random_quote/presentation/cubits/quotes_cubit.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ServiceLocator().init();
-  runApp(const MyApp());
+  BlocOverrides.runZoned(
+        () {
+      runApp(const QuoteApp());
+    },
+    blocObserver: AppBlocObserver(),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class QuoteApp extends StatelessWidget {
+  const QuoteApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
