@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:quotes/core/error/failures.dart';
 
+import '../../../../core/error/failures.dart';
 import '../repositories/quote_repository.dart';
 import '../../../../core/usecases/base_use_case.dart';
 import '../entities/quote.dart';

@@ -3,6 +3,8 @@ import 'package:quotes/core/utils/app_colors.dart';
 import 'package:quotes/core/utils/app_strings.dart';
 import 'package:quotes/core/utils/media_query_values.dart';
 
+import '../../config/locale/app_localizations.dart';
+
 class ErrorWidgets extends StatelessWidget {
   const ErrorWidgets({Key? key, this.onPressed}) : super(key: key);
   final void Function()? onPressed;
@@ -23,14 +25,14 @@ class ErrorWidgets extends StatelessWidget {
             height: 20,
           ),
           Text(
-            AppStrings.somethingWentWrong,
+            AppLocalizations.of(context)!.translate('something_went_wrong')!,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           const SizedBox(
             height: 20,
           ),
           Text(
-            AppStrings.pleaseTryAgain,
+            AppLocalizations.of(context)!.translate('try_again')!,
             style: Theme.of(context).textTheme.bodySmall,
           ),
           const SizedBox(
@@ -41,7 +43,7 @@ class ErrorWidgets extends StatelessWidget {
             color: AppColors.primary,
             onPressed: onPressed,
             child: Text(
-              AppStrings.reloadScreen,
+              AppLocalizations.of(context)!.translate('reload_screen')!,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),

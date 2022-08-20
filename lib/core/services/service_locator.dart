@@ -1,11 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:quotes/core/api/api_consumer.dart';
-import 'package:quotes/core/api/app_interceptors.dart';
-import 'package:quotes/core/api/dio_consumer.dart';
+import 'package:quotes/features/splash/data/datasources/lang_local_data_sourece.dart';
+import 'package:quotes/features/splash/data/repositories/locale_repository_impl.dart';
+import 'package:quotes/features/splash/domain/repositories/locale_repository.dart';
+import 'package:quotes/features/splash/domain/usecases/change_lang.dart';
+import 'package:quotes/features/splash/domain/usecases/get_saved_lang.dart';
+import 'package:quotes/features/splash/presentation/cubit/lcoale_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../api/api_consumer.dart';
+import '../api/app_interceptors.dart';
+import '../api/dio_consumer.dart';
 import '../network/network_info.dart';
 import '../../features/random_quote/data/datasources/local_data_source.dart';
 import '../../features/random_quote/data/datasources/remote_data_source.dart';
@@ -22,10 +28,22 @@ class ServiceLocator {
 
     // Blocs
     sl.registerFactory(() => QuotesCubit(getRandomQuoteUseCase: sl()));
+    sl.registerFactory(
+      () => LocaleCubit(
+        changeLangUseCase: sl(),
+        getSavedLangUseCase: sl(),
+      ),
+    );
 
     // UseCases
-    sl.registerLazySingleton(
+    sl.registerLazySingleton<GetRandomQuoteUseCase>(
       () => GetRandomQuoteUseCase(quoteRepository: sl()),
+    );
+    sl.registerLazySingleton<GetSavedLangUseCase>(
+      () => GetSavedLangUseCase(langRepository: sl()),
+    );
+    sl.registerLazySingleton<ChangeLangUseCase>(
+      () => ChangeLangUseCase(langRepository: sl()),
     );
 
     // Repository
@@ -37,12 +55,20 @@ class ServiceLocator {
       ),
     );
 
+    sl.registerLazySingleton<LocaleRepository>(
+        () => LocaleRepositoryImpl(langLocalDataSource: sl()));
+
+
     // Data Sources
     sl.registerLazySingleton<BaseLocalDataSource>(
       () => LocalDataSource(sharedPref: sl()),
     );
     sl.registerLazySingleton<BaseRemoteDataSource>(
       () => RemoteDataSource(apiConsumer: sl()),
+    );
+
+    sl.registerLazySingleton<LangLocalDataSource>(
+          () => LangLocalDataSourceImpl(sharedPreferences: sl()),
     );
 
     // Core

@@ -9,4 +9,7 @@ class AppStrings {
   static const String somethingWentWrong = 'Something went wrong';
   static const String pleaseTryAgain = 'Please Try Again';
   static const String reloadScreen = 'Reload Screen';
+  static const String englishCode = 'en';
+  static const String arabicCode = 'ar';
+  static const String local = 'local';
 }
