@@ -1,16 +1,14 @@
-# random_quotes
+# Random Quotes - Clean Architecture 
 
-A new Flutter project.
+## Usage Libraries
+  flutter_bloc .
+  equatable.
+  dartz.
+  fluttertoast.
+  dio: ^4.0.6
+  internet_connection_checker.
+  shared_preferences.
+  get_it.
+  flutter_spinkit.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### video Screen
